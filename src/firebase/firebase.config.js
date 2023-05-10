@@ -17,3 +17,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export default app;
+
+
+// VITE_apiKey=AIzaSyDA_1E5WZpUZ3IKUphnVQ11JMJvB0HFa-4
+// VITE_authDomain=cars-doctor-ab5da.firebaseapp.com
+// VITE_projectId=cars-doctor-ab5da
+// VITE_storageBucket=cars-doctor-ab5da.appspot.com
+// VITE_messagingSenderId=696067782836
+// VITE_appId=1:696067782836:web:ef82577cace363a9227fe1
