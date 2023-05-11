@@ -1,13 +1,26 @@
 import React from "react";
+import { useContext } from "react";
 import { Form, Link } from "react-router-dom";
 import loginBanner from '../../assets/images/login/login.svg'
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
-    const handleLogin= event =>{
+  
+  const {signIn}= useContext(AuthContext)
+  
+  const handleLogin= event =>{
         event.preventDefault();
-        form= event.target;
-        email= form.target.value;
-        password = form.target.value;
+        const form= event.target;
+        const email= form.email.value;
+        const password = form.password.value;
+        console.log(email, password)
+
+        signIn(email, password)
+        .then (result=>{
+          const user = result.user;
+          console.log(user);
+        })
+        .catch (error => console.log(error))
         
     }
   return (
@@ -25,8 +38,9 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
-                type="text"
+                type="email"
                 placeholder="email"
+                name="email"
                 className="input input-bordered"
               />
             </div>
@@ -35,8 +49,9 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
+                name="password"
                 className="input input-bordered"
               />
               <label className="label">
@@ -46,8 +61,8 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">              
-              <input className="btn btn-primary"  type= "submit" value="Login" />
-              <p className="text-center mt-5 font-semibold">New to car doctor? Please <Link>register</Link></p>
+              <input className="btn btn-danger bg-red-500" type= "submit" value="Login" />
+              <p className="text-center mt-5 font-semibold">New to car doctor? Please <Link className="text-green-600 font-bold" to='/logOut'>register</Link></p>
             </div>
           </div>
           </Form>

@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <div className="carousel w-full h-[600px] my-5">
       <div id="slide1" className="carousel-item relative w-full ">
-        <img src={img1} className="w-full rounded-xl" />
+        <img src={img1} className="w-full h-600 object-cover rounded-xl" />
         <div className="absolute left-0 top-0 bottom-5 h-full flex items-center rounded-xl bg-gradient-to-r w-full from-[#151515] to-[rgba(21, 21, 21, 0)]">
           <div className="text-white space-y-7 w-1/3 pl-12 ">
             <h2 className="text-6xl font-bold">
@@ -37,7 +37,7 @@ const Banner = () => {
       </div>
 
       <div id="slide2" className="carousel-item relative w-full ">
-        <img src={img2} className="w-full rounded-xl" />
+        <img src={img2} className="object-cover w-full h-full rounded-xl" />
         <div className="absolute left-0 top-0 bottom-5 h-full flex items-center rounded-xl bg-gradient-to-r w-full from-[#151515] to-[rgba(21, 21, 21, 0)]">
           <div className="text-white space-y-7 w-1/3 pl-12 ">
             <h2 className="text-6xl font-bold">
