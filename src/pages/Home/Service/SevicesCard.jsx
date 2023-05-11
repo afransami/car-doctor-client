@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SevicesCard = ({service}) => {
-    const {img, title, price}=service;
+    const {img, title, price, _id}=service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -16,7 +16,7 @@ const SevicesCard = ({service}) => {
         <h2 className="card-title">{title}</h2>
         <p>Price: ${price}</p>
         <div className="card-actions justify-end">
-          <Link to='/'><button className="btn btn-circle">❯</button></Link>          
+        <Link to={`/checkout/${_id}`}><button className="btn btn-circle">❯</button></Link>          
         </div>
       </div>
     </div>
