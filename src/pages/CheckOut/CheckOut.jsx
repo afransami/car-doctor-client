@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const CheckOut = () => {
-  const service = useLoaderData();
-  const { title, _id, price, img } = service;
-  return (
-    <div className="px-5">
-      {/* <h3 className="text-3xl">Name: {title}</h3>
-      <p className="text-xl">Price: ${price}</p>
-      <img className="w-1/3" src={img} alt="" /> */}
 
-      
+    const {user}= useContext(AuthContext)
+    const service = useLoaderData();
+    const { title, _id, price, img } = service;
+
+    const handleCheckOut = event=>{
+        event.preventDefault ();
+        const form = event.target;
+        const name = form.name.value;
+        const date = form.date.value;
+        const email = user?.email;
+        const order= {
+            customerName: name, email, date,
+            service: _id,
+            price: price
+         }                   
+            
+         console.log(order);
+        }
+  
+  
+  return (
+    <div className="px-5">   
             <div className="card-body">
-            <h1 className="text-5xl text-center font-bold">Submit Orders</h1>                    
-              <form className="">
+            <h1 className="text-5xl text-center font-bold"> Service Category: {title}</h1>                    
+              <form onSubmit={handleCheckOut}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">                    
 
                 <div className="form-control">
@@ -22,17 +37,20 @@ const CheckOut = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
+                    defaultValue={user?.displayName}
                     placeholder="name"
                     className="input input-bordered"
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text">Date</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="password"
+                    type="date"
+                    name="date"
+                    placeholder="date"
                     className="input input-bordered"
                   />
                 </div>
@@ -41,27 +59,30 @@ const CheckOut = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                    type="text"
+                    type="email"
+                    name= "email"
                     placeholder="email"
+                    defaultValue={user?.email}
                     className="input input-bordered"
                   />
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Password</span>
+                    <span className="label-text">Due Amount</span>
                   </label>
                   <input
                     type="text"
-                    placeholder="password"
+                    name= "amount"
+                    defaultValue={'$ '+ price}
                     className="input input-bordered"
                   />
                 </div>
-
                 </div>
-              </form>
-              <div className="form-control mt-6">                
+                <div className="form-control mt-6">                
                 <input  className="btn btn-block btn-primary" type="submit" value="Order confirm" />                
               </div>
+              </form>
+              
             </div>
           </div>
   );
