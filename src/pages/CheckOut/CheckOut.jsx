@@ -14,13 +14,30 @@ const CheckOut = () => {
         const name = form.name.value;
         const date = form.date.value;
         const email = user?.email;
-        const order= {
-            customerName: name, email, date,
-            service: _id,
+        const booking= {
+            customerName: name, email, date, img,
+            service_id: _id,
+            service: title,
             price: price
-         }                   
-            
-         console.log(order);
+         }   
+         console.log(booking);
+
+         fetch('http://localhost:5000/checkout', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+         })
+         .then (res => res.json())
+         .then (data=> {
+            console.log(data);
+            if(data.insertedId){
+                alert('successfully added')
+            }
+         })
+
+
         }
   
   
