@@ -19,12 +19,12 @@ const BookingCard = () => {
         {/* head */}
         <thead>
           <tr>
-            <th>
+            <th>               
               <label>
                 <input type="checkbox" className="checkbox" />
               </label>
             </th>
-            <th>Name</th>
+            <th>Image</th>
             <th>Service</th>
             <th>Date</th>
             <th>Price</th>            
