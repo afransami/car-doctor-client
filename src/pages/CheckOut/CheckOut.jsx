@@ -36,8 +36,6 @@ const CheckOut = () => {
                 alert('successfully added')
             }
          })
-
-
         }
   
   

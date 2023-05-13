@@ -5,6 +5,7 @@ import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
 import CheckOut from "../../pages/CheckOut/CheckOut";
 import BookingCard from "../../pages/BookingCard/BookingCard";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'bookingCard',
-          element: <BookingCard></BookingCard>
+          element: <PrivateRoute><BookingCard></BookingCard></PrivateRoute>
         }
       ]
     },

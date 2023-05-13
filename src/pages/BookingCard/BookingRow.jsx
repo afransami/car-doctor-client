@@ -1,19 +1,17 @@
 import React from "react";
 
-const BookingRow = ({ booking }) => {
-  const { _id, date, price, service, img } = booking;
-  const handleDelete =(id)=>{
-const proceed = confirm ('Are you want to delete')
-if(proceed){
+const BookingRow = ({ booking, handleDelete, handleConfirm }) => {
+  const { _id, date, price, service, img, status } = booking;
 
-}
-  }
-
+  
 
   return (
     <tr>
       <th>
-        <button onClick={()=>handleDelete(_id)} className="btn btn-xs btn-circle">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn btn-xs btn-circle"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -41,7 +39,9 @@ if(proceed){
       <td>{date}</td>
       <td>{price}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        {
+        status === 'confirm' ? <span className="font-bold text-primary">Confirmed</span>: <span>
+         <button onClick={()=>handleConfirm(_id)} className="btn btn-ghost btn-xs">Please Confirm</button></span>}
       </th>
     </tr>
   );
