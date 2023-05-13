@@ -1,22 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import BookingRow from "./BookingRow";
+import { useNavigate } from "react-router-dom";
 
 const BookingCard = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBooking] = useState([]);
+  const navigate = useNavigate();
 
-  const url = `http://localhost:5000/checkout?email=${user?.email}`;
+  const url = `https://car-doctor-server-orpin-sigma.vercel.app/checkout?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+        method:'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('car-access-token')}`
+        }
+        
+    })
       .then((res) => res.json())
-      .then((data) => setBooking(data));
-  }, [bookings]);
+      .then((data) => {
+        if(!data.error)
+        {
+            setBooking(data)
+        } else{
+            // logout and then navigate
+            navigate('/');
+        }
+    });
+  }, [url, navigate]);
 
   const handleDelete = (id) => {
     const proceed = confirm("Are you want to delete");
     if (proceed) {
-      fetch(`http://localhost:5000/checkout/${id}`, {
+      fetch(`https://car-doctor-server-orpin-sigma.vercel.app/checkout/${id}`, {
         method: "DELETE",
       })
         .then(res => res.json())
@@ -32,7 +48,7 @@ const BookingCard = () => {
   };
 
   const handleConfirm = id=>{
-    fetch(`http://localhost:5000/checkout/${id}`, {
+    fetch(`https://car-doctor-server-orpin-sigma.vercel.app/checkout/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type':'application/json'

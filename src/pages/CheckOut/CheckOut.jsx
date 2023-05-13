@@ -22,7 +22,7 @@ const CheckOut = () => {
          }   
          console.log(booking);
 
-         fetch('http://localhost:5000/checkout', {
+         fetch('https://car-doctor-server-orpin-sigma.vercel.app/checkout', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
